@@ -1,94 +1,34 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
-public:
-    int pivot(vector<int> &arr)
-    {
-        int l = 0, h = arr.size() - 1;
-        while (l <= h)
-        {
-            int mid = l + (h - l) / 2;
-            if (arr[mid] > arr[mid + 1])
-            {
-                return mid;
-            }
-            else if (arr[mid] < arr[mid - 1])
-            {
-                return mid - 1;
-            }
-            else if (arr[l] > arr[mid])
-            {
-                h = mid - 1;
-            }
-            else if (arr[l] < arr[mid])
-            {
-                l = mid + 1;
-            }
-        }
-        return -1;
-    }
-    int search(vector<int> &arr, int t)
-    {
 
-        int p = pivot(arr);
-        if (p == -1)
-        {
-            int l = 0, h = arr.size() - 1;
-            while (l <= h)
-            {
-                int mid = l + (h - l) / 2;
-                if (arr[mid] < t)
-                {
-                    l = mid + 1;
-                }
-                else if (arr[mid] > t)
-                {
-                    h = mid - 1;
-                }
-                else if (arr[mid] == t)
-                {
-                    return mid;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
+
+   
+int pivot(vector<int>arr,int n,int t){
+    int l=0,h=n-1;
+    int pi=0;
+    while(l<=h){
+        int mid=(h+l)/2;
+        if(arr[mid]<arr[0]){
+            h=mid-1;
         }
-        else{
-            int low=0,high=arr.size()-1;
-            if(arr[low]>t){
-                low=p+1;
-                high=arr.size()-1;
-            }
-            else if(arr[low]<=t){
-                low=0;
-                high=p;
-            }
-            else if(arr[p]==t){
-                return p;
-            }
-            while(low<=high){
-                int mid = l + (h - l) / 2;
-                if (arr[mid] < t)
-                {
-                    l = mid + 1;
-                }
-                else if (arr[mid] > t)
-                {
-                    h = mid - 1;
-                }
-                else if (arr[mid] == t)
-                {
-                    return mid;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
+        else if(arr[mid]>arr[0]){
+            l=mid+1;
+        }
+        else if(arr[mid]>arr[mid+1] ){
+            return 10;
         }
     }
-};
+}
+
+
+
+int main(){
+    int t=1;
+    vector<int>arr;
+    arr={5,6,7,1,2,3};
+    int n=arr.size();
+    int pi=pivot(arr,n,t);
+    cout<<pi<<endl;
+    
+}
